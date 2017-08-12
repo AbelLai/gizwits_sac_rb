@@ -6,19 +6,9 @@ GizwitsSac其实是Gizwits Snoti API Client的缩写，一个Ruby版本。
 ## 安装
 
 往你的Gemfile加入以下这行:
-
 ```ruby
-gem 'gizwits_sac'
+gem 'gizwits_sac', git: "git@github.com:AbelLai/gizwits_sac_rb.git"
 ```
-
-然后执行:
-
-    $ bundle
-
-或者你自己通过gem安装:
-
-    $ gem install gizwits_sac
-
 
 ## 用法
 ### 1. GizwitsSac::SnotiClient
