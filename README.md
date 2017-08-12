@@ -2,6 +2,7 @@
 
 GizwitsSac is short for Gizwits Snoti API Client, and GizwitsSac-rb just a Ruby version, which I hope it can help you more easily to connect to [Gizwits Snoti API](http://docs.gizwits.com/zh-cn/Cloud/NotificationAPI.html).
 
+### [中文说明](https://github.com/AbelLai/gizwits_sac_rb/blob/master/README.zh_cn.md)
 
 ## Installation
 
