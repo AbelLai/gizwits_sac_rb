@@ -6,6 +6,7 @@ require "thread"
 #   	event_push: (Proc.new {|event_push_data| }),
 #   	remote_ctrl: (Proc.new { return nil }),
 #     remote_ctrl_res: (Proc.new {|r_ctrl_data| }),
+#     error_res: (Proc.new {|err_data| }),
 #     heartbeat_interval: 60,
 #     logger: Logger.new("xxxx"),
 #   	retry_count: 10,
@@ -33,6 +34,7 @@ module GizwitsSac
 			@event_push = options.delete(:event_push) || (Proc.new {|event_push_data| })
 			@remote_ctrl = options.delete(:remote_ctrl) || (Proc.new { return nil })
 			@remote_ctrl_res = options.delete(:remote_ctrl_res) || (Proc.new {|r_ctrl_data| })
+			@error_res = options[:error_res] || (Proc.new {|err_data| })
 			@retry_count = options.delete(:retry_count) || 5
 			@heartbeat_interval = options.delete(:heartbeat_interval) || 60
 			@logger = options.delete(:logger) || Logger.new(STDOUT)
@@ -110,6 +112,8 @@ module GizwitsSac
 	    	@event_push.call(json_data)
 	    when "remote_control_res"
 	    	@remote_ctrl_res.call(json_data)
+	    when "invalid_msg"
+	    	@error_res.call(json_data)
 	    when "pong"
 	    	# Nothing to do
 	    end

@@ -39,7 +39,7 @@ client = GizwitsSac::SnotiClient.new({
 	logger: Logger.new(STDOUT),
 	host: "snoti.gizwits.com",
 	port: "2017",
-	timeout: 3, # default value is 3 seconds
+	connect_timeout: 3, # default value is 3 seconds
 	read_timeout: 3, # default value is 3 seconds
 	write_timeout: 3, # default value is 3 seconds
 	prefetch_count: 50, # default value is 50
@@ -63,7 +63,7 @@ Another way, you can use GizwitsSac::SnotiSocket, and build a client as you like
 socket = GizwitsocketC::SnotiSocket.new({
 	host: "snoti.gizwits.com",
 	port: "2017",
-	timeout: 3, # default value is 3 seconds
+	connect_timeout: 3, # default value is 3 seconds
 	read_timeout: 3, # default value is 3 seconds
 	write_timeout: 3, # default value is 3 seconds
 	prefetch_count: 50, # default value is 50

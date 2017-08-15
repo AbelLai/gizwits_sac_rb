@@ -7,7 +7,7 @@ module GizwitsSac
 	# options = {
 	# 	host: "xxx",
 	# 	port: "xxx",
-	# 	timeout: xx,
+	# 	connect_timeout: xx,
 	# 	read_timeout: xx,
 	# 	write_timeout: xx,
 	# 	prefetch_count: xx,
@@ -81,6 +81,13 @@ module GizwitsSac
 			write("{\"cmd\": \"event_ack\",\"delivery_id\": #{delivery_id}}")
 		end
 
+		def close
+			@ssl_socket.close if (!@ssl_socket.nil? && !@ssl_socket.closed?)
+			@ssl_socket = nil
+			@socket.close if (!@socket.nil? && !@socket.closed?)
+			@socket = nil
+		end
+
 		private
 
 		def socket_connect
@@ -97,24 +104,13 @@ module GizwitsSac
 						# TODO: nothing to do
 					rescue ConnTimeoutError
 						raise ConnTimeoutError
-					end				
+					end
+				rescue ConnTimeoutError => timeout_ex
+					raise ConnTimeoutError
 				rescue SystemCallError, IOError => exception
 					raise ConnFailedError.new("socket connection failed with exception: #{exception}")
 				end
 			end		
-		end
-
-		def wait_connect(socket, socket_addr = nil)
-			if yield
-				begin
-					socket_addr.nil? ? socket.connect_nonblock : socket.connect_nonblock(socket_addr)
-				rescue Errno::EISCONN
-					# Connection established
-				end
-			else
-				socket.close
-				raise ConnTimeoutError
-			end
 		end
 
 	  def non_blocking(socket, deadline)
@@ -157,7 +153,9 @@ module GizwitsSac
 					# TODO: nothing to do
 				rescue ConnTimeoutError
 					raise ConnTimeoutError
-				end	
+				end
+			rescue ConnTimeoutError => timeout_ex
+				raise ConnTimeoutError
 			rescue SystemCallError, OpenSSL::SSL::SSLError, IOError => exception
 				raise ConnFailedError.new("#{failed_desc}\n Exception trace: #{exception}")
 			end			
@@ -169,13 +167,6 @@ module GizwitsSac
 
 		def read_data(n_bytes)
 			ssl_socket_connect("read data failed.", @read_timeout) {@ssl_socket.read_nonblock(n_bytes)}
-		end
-
-		def close
-			@ssl_socket.close
-			@ssl_socket = nil
-			@socket.close if !@socket.closed?
-			@socket = nil
 		end
 	end	
 end
