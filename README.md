@@ -17,6 +17,8 @@ gem 'gizwits_sac', git: "git@github.com:AbelLai/gizwits_sac_rb.git"
 Simply you can just use GizwitsSac::SnotiClient, and focus on the event via callback as the example below. (**GizwitsSac::SnotiClient will handle heartbeat for you in ervery seconds you set.**)
 
 ```ruby
+require "gizwits_sac"
+
 event_push_handler = Proc.new do |event_push_data|
 	# Here it just care the event *device_status_raw*.
 	if event_push_data["event_type"] == "device_status_raw"
@@ -60,6 +62,8 @@ client.start
 ### 2. GizwitsSac::SnotiSocket
 Another way, you can use GizwitsSac::SnotiSocket, and build a client as you like. Here is a very very simple example as below.
 ```ruby
+require "gizwits_sac"
+
 socket = GizwitsocketC::SnotiSocket.new({
 	host: "snoti.gizwits.com",
 	port: "2017",

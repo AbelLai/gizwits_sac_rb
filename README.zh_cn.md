@@ -16,6 +16,8 @@ gem 'gizwits_sac', git: "git@github.com:AbelLai/gizwits_sac_rb.git"
 
 例子：
 ```ruby
+require "gizwits_sac"
+
 event_push_handler = Proc.new do |event_push_data|
 	# Here it just care the event *device_status_raw*.
 	if event_push_data["event_type"] == "device_status_raw"
@@ -61,6 +63,8 @@ GizwitsSac封装了一个SnotiSocket，你可以基于SnotiSocket实现自己的
 
 例子：
 ```ruby
+require "gizwits_sac"
+
 socket = GizwitsocketC::SnotiSocket.new({
 	host: "snoti.gizwits.com",
 	port: "2017",
