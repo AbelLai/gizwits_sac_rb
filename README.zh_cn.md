@@ -7,7 +7,7 @@ GizwitsSac其实是Gizwits Snoti API Client的缩写，一个Ruby版本。
 
 往你的Gemfile加入以下这行:
 ```ruby
-gem 'gizwits_sac', git: "git@github.com:AbelLai/gizwits_sac_rb.git"
+gem 'gizwits_sac'
 ```
 
 ## 用法

@@ -9,7 +9,7 @@ GizwitsSac is short for Gizwits Snoti API Client, and GizwitsSac-rb just a Ruby 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'gizwits_sac', git: "git@github.com:AbelLai/gizwits_sac_rb.git"
+gem 'gizwits_sac'
 ```
 
 ## Usage
