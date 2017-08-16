@@ -1,3 +1,5 @@
+require "socket"
+
 # GizwitsSac = Gizwits Snoti API Client
 module GizwitsSac
 	class LoginError < SocketError	
