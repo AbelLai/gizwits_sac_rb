@@ -66,7 +66,7 @@ describe GizwitsSac do
 						expect(@client.login_ok?).to eq true
 	  		end
 
-	  		it "login successfully if auth data something invalid" do
+	  		it "donot login successfully if auth data something invalid" do
 		  			@client = GizwitsSac::SnotiSocket.new({
 		  				host: "localhost", 
 		  				port: 20171,
