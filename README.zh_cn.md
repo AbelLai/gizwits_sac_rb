@@ -65,7 +65,7 @@ GizwitsSac封装了一个SnotiSocket，你可以基于SnotiSocket实现自己的
 ```ruby
 require "gizwits_sac"
 
-socket = GizwitsocketC::SnotiSocket.new({
+socket = GizwitsSac::SnotiSocket.new({
 	host: "snoti.gizwits.com",
 	port: "2017",
 	connect_timeout: 3, # default value is 3 seconds
