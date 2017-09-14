@@ -64,7 +64,7 @@ Another way, you can use GizwitsSac::SnotiSocket, and build a client as you like
 ```ruby
 require "gizwits_sac"
 
-socket = GizwitsocketC::SnotiSocket.new({
+socket = GizwitsSac::SnotiSocket.new({
 	host: "snoti.gizwits.com",
 	port: "2017",
 	connect_timeout: 3, # default value is 3 seconds
